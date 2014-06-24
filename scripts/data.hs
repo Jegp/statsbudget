@@ -29,12 +29,14 @@ parse src =
     (\x -> length x > 0 &&
            (startswith "\167" (x !! 0) || startswith "I alt" (x !! 0))) list
 
+formatNumber n = replace "," "." n
+
 toItem :: [String] -> String -> String -> Int -> String
 toItem list year field item =
   concat ["{\"id\": \"", year, (list !! 0), "\",\n",
           "\"name\": \"", (list !! 0), "\",\n",
-          "{\"data\": {\"", field, "\":", list !! item, ",",
-          "\"$area\":", list !! item, "}\n}\n,"]
+          "{\"data\": {\"", field, "\":", formatNumber (list !! item), ",",
+          "\"$area\":", formatNumber (list !! item), "}\n}\n,"]
 
 toJSON :: String -> [[String]] -> String
 toJSON year list =
