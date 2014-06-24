@@ -28,14 +28,14 @@ var Log = {
 
 function init(){
   //init data
-  var json =
-{
+  var json =bonjovi;
+/*{
    "data": {},
    "id": "root",
    "name": "Staten Danmark",
    "children": [
         {
-          "id": "artist_Soundgarden",
+          "id": "aar_2013",
           "name": "2013",
           "data": {
             "playcount": 607,
@@ -45,12 +45,24 @@ function init(){
             {
               "data": {
                 "playcount": "317",
-                "$color": "#7E8032",
+                "$color": "#4FB31F",
                 "$area": 317
               },
-              "id": "album-Down On The Upside",
-              "name": "Down On The Upside",
-              "children": []
+              "id": "income_2013",
+              "name": "Indtægter",
+              "children": [
+              {
+                "children": [],
+                "data": {
+                  "playcount": "290",
+                  "$color": "#F70707",
+                  "image": "http://userserve-ak.last.fm/serve/300x300/8590515.jpg",
+                  "$area": 290
+                },
+                "id": "albasum-Superunknown",
+                "name": "Superunknown"
+              }
+              ]
             },
             {
               "children": [],
@@ -60,8 +72,8 @@ function init(){
                 "image": "http://userserve-ak.last.fm/serve/300x300/8590515.jpg",
                 "$area": 290
               },
-              "id": "album-Superunknown",
-              "name": "Superunknown"
+              "id": "expense_2013",
+              "name": "Udgifter"
             }
           ]
         },
@@ -120,18 +132,22 @@ function init(){
           "name": "Mother Love Bone"
         }
       ]
-};
+};*/
   //end
   //init TreeMap
   var tm = new $jit.TM.Squarified({
     //where to inject the visualization
     injectInto: 'infovis',
+        //show only one tree level
+    levelsToShow: 2,
     //parent box title heights
     titleHeight: 35,
     //enable animations
     animate: animate,
+      //add cushion gradients
+  cushion: useGradients,
     //box offsets
-    offset: 3,
+    offset: 5,
     //Attach left and right click events
     Events: {
       enable: true,
@@ -142,7 +158,7 @@ function init(){
         tm.out();
       }
     },
-    duration: 1000,
+    duration: 800,
     //Enable tips
     Tips: {
       enable: true,
