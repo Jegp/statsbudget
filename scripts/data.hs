@@ -25,6 +25,25 @@ parse src =
   let html = innerText $ dropWhile (~/= "<pre>") $ parseTags src in
   let text = filter (\x -> x /= '-' && x /= '.' && x /= '+') html in
   let list = map (map trim) $ map (splitOn "|") $ splitOn "\n" text  in
-  filter (\x -> length x > 0 && (startswith "\167" (x !! 0) || startswith "I alt" (x !! 0))) list
+  filter
+    (\x -> length x > 0 &&
+           (startswith "\167" (x !! 0) || startswith "I alt" (x !! 0))) list
 
-main = getData Grant 13 "HOVEDOVERSIGT" >>= putStr . show . parse
+toItem :: [String] -> String -> String -> Int -> String
+toItem list year field item =
+  concat ["{\"id\": \"", year, (list !! 0), "\",\n",
+          "\"name\": \"", (list !! 0), "\",\n",
+          "{\"data\": {\"", field, "\":", list !! item, ",",
+          "\"$area\":", list !! item, "}\n}\n,"]
+
+toJSON :: String -> [[String]] -> String
+toJSON year list =
+  "{\"children\": [" ++
+  concat (map (\x ->
+         toItem x year "income" 5 ++ toItem x year "expense" 4) list)
+  ++ "]}"
+
+outputJSON year =
+  getData Grant year "HOVEDOVERSIGT" >>= putStr . (toJSON (show year)) . parse
+
+main = outputJSON 13
