@@ -5,7 +5,7 @@ var labelType, useGradients, nativeTextSupport, animate;
       iStuff = ua.match(/iPhone/i) || ua.match(/iPad/i),
       typeOfCanvas = typeof HTMLCanvasElement,
       nativeCanvasSupport = (typeOfCanvas == 'object' || typeOfCanvas == 'function'),
-      textSupport = nativeCanvasSupport 
+      textSupport = nativeCanvasSupport
         && (typeof document.createElement('canvas').getContext('2d').fillText == 'function');
   //I'm setting this based on the fact that ExCanvas provides text support for IE
   //and that as of today iPhone/iPad current text support is lame
@@ -18,7 +18,7 @@ var labelType, useGradients, nativeTextSupport, animate;
 var Log = {
   elem: false,
   write: function(text){
-    if (!this.elem) 
+    if (!this.elem)
       this.elem = document.getElementById('log');
     this.elem.innerHTML = text;
     this.elem.style.left = (500 - this.elem.offsetWidth / 2) + 'px';
@@ -28,96 +28,97 @@ var Log = {
 
 function init(){
   //init data
-  var json = 
+  var json =
 { "children": [
      {
        "children": [
          {
-           "children": [], 
+           "children": [],
            "data": {
-             "playcount": "317", 
-             "$color": "#7E8032", 
-             "image": "http://userserve-ak.last.fm/serve/300x300/8600371.jpg", 
+             "playcount": "317",
+             "$color": "#7E8032",
+             "image": "http://userserve-ak.last.fm/serve/300x300/8600371.jpg",
              "$area": 317
-           }, 
-           "id": "album-Down On The Upside", 
+           },
+           "id": "album-Down On The Upside",
            "name": "Down On The Upside"
-         }, 
+         },
          {
-           "children": [], 
+           "children": [],
            "data": {
-             "playcount": "290", 
-             "$color": "#897532", 
-             "image": "http://userserve-ak.last.fm/serve/300x300/8590515.jpg", 
+             "playcount": "290",
+             "$color": "#897532",
+             "image": "http://userserve-ak.last.fm/serve/300x300/8590515.jpg",
              "$area": 290
-           }, 
-           "id": "album-Superunknown", 
+           },
+           "id": "album-Superunknown",
            "name": "Superunknown"
          }
-       ], 
+       ],
        "data": {
-         "playcount": 607, 
+         "playcount": 607,
          "$area": 607
-       }, 
-       "id": "artist_Soundgarden", 
+       },
+       "id": "artist_Soundgarden",
        "name": "Soundgarden"
-     }, 
+     },
      {
        "children": [
          {
-           "children": [], 
+           "children": [],
            "data": {
-             "playcount": "198", 
-             "$color": "#AE5032", 
-             "image": "http://userserve-ak.last.fm/serve/300x300/8599099.jpg", 
+             "playcount": "198",
+		"penis":"hej",
+             "$color": "#AE5032",
+             "image": "http://userserve-ak.last.fm/serve/300x300/8599099.jpg",
              "$area": 198
-           }, 
-           "id": "album-On And On", 
+           },
+           "id": "album-On And On",
            "name": "On And On"
-         }, 
+         },
          {
-           "children": [], 
+           "children": [],
            "data": {
-             "playcount": "186", 
-             "$color": "#B34B32", 
-             "image": "http://userserve-ak.last.fm/serve/300x300/30082075.jpg", 
+             "playcount": "186",
+             "$color": "#B34B32",
+             "image": "http://userserve-ak.last.fm/serve/300x300/30082075.jpg",
              "$area": 186
-           }, 
-           "id": "album-Brushfire Fairytales", 
+           },
+           "id": "album-Brushfire Fairytales",
            "name": "Brushfire Fairytales"
          }
-       ], 
+       ],
        "data": {
-         "playcount": 384, 
+         "playcount": 384,
          "$area": 384
-       }, 
-       "id": "artist_Jack Johnson", 
+       },
+       "id": "artist_Jack Johnson",
        "name": "Jack Johnson"
-     }, 
+     },
      {
        "children": [
          {
-           "children": [], 
+           "children": [],
            "data": {
-             "playcount": "349", 
-             "$color": "#718D32", 
-             "image": "http://userserve-ak.last.fm/serve/300x300/21881921.jpg", 
+             "playcount": "349",
+             "$color": "#718D32",
+             "image": "http://userserve-ak.last.fm/serve/300x300/21881921.jpg",
              "$area": 349
-           }, 
-           "id": "album-Mother Love Bone", 
+           },
+           "id": "album-Mother Love Bone",
            "name": "Mother Love Bone"
          }
-       ], 
+       ],
        "data": {
-         "playcount": 349, 
+         "playcount": 349,
          "$area": 349
-       }, 
-       "id": "artist_Mother Love Bone", 
+       },
+       "id": "artist_Mother Love Bone",
        "name": "Mother Love Bone"
      }
-   ], 
-   "data": {}, 
-   "id": "root", 
+   ],
+   "data": {},
+   "id": "root",
    "name": "Top Albums"
 };
   //end
@@ -126,11 +127,11 @@ function init(){
     //where to inject the visualization
     injectInto: 'infovis',
     //parent box title heights
-    titleHeight: 15,
+    titleHeight: 35,
     //enable animations
     animate: animate,
     //box offsets
-    offset: 1,
+    offset: 3,
     //Attach left and right click events
     Events: {
       enable: true,
@@ -152,17 +153,18 @@ function init(){
       //add content to the tooltip when a node
       //is hovered
       onShow: function(tip, node, isLeaf, domElement) {
-        var html = "<div class=\"tip-title\">" + node.name 
+        var html = "<div class=\"tip-title\">" + node.name
           + "</div><div class=\"tip-text\">";
         var data = node.data;
-        if(data.playcount) {
-          html += "play count: " + data.playcount;
-        }
-        if(data.image) {
-          html += "<img src=\""+ data.image +"\" class=\"album\" />";
-        }
-        tip.innerHTML =  html; 
-      }  
+	       for (var key in data) {
+	            if(key.indexOf('$')>=0){}else{
+		               if(data.hasOwnProperty(key)){
+	                    html +="<div id="+"+>"+key+" : "+ data[key]+"</div>";
+      }
+		}
+	}
+        tip.innerHTML =  html;
+      }
     },
     //Add the name of the node in the correponding label
     //This method is called once, on label creation.
