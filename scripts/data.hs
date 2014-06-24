@@ -1,3 +1,6 @@
+import Data.List.Split
+import Data.String.Utils
+import Data.Char (isSpace)
 import Network.HTTP
 import Text.HTML.TagSoup
 
@@ -14,7 +17,14 @@ getData book year topic =
   let url = baseURL ++ toBook book year ++ "&topic=" ++ topic in
   simpleHTTP ( getRequest url ) >>= getResponseBody
 
-parse :: String -> String
-parse src = innerText $ dropWhile (~/= "<pre>") $  parseTags src
+trim = f . f
+  where f = reverse . dropWhile isSpace
 
-main = getData Grant 13 "HOVEDOVERSIGT" >>= putStr . parse
+parse :: String -> [[String]]
+parse src =
+  let html = innerText $ dropWhile (~/= "<pre>") $ parseTags src in
+  let text = filter (\x -> x /= '-' && x /= '.' && x /= '+') html in
+  let list = map (map trim) $ map (splitOn "|") $ splitOn "\n" text  in
+  filter (\x -> length x > 0 && (startswith "\167" (x !! 0) || startswith "I alt" (x !! 0))) list
+
+main = getData Grant 13 "HOVEDOVERSIGT" >>= putStr . show . parse
