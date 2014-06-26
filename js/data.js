@@ -99,10 +99,6 @@
 ,
 {"id": "expense-13§ 36 Pensionsvæsenet","name": "§ 36 Pensionsvæsenet","data": {"expense":22117.7,"$area":22117.7}}
 ,
-{"id": "income-13I alt","name": "I alt","data": {"income":20643.0,"$area":20643.0}}
-,
-{"id": "expense-13I alt","name": "I alt","data": {"expense":622372.1,"$area":622372.1}}
-,
 {"id": "income-13§ 37 Renter","name": "§ 37 Renter","data": {"income":752.2,"$area":752.2}}
 ,
 {"id": "expense-13§ 37 Renter","name": "§ 37 Renter","data": {"expense":22862.0,"$area":22862.0}}
@@ -110,10 +106,6 @@
 {"id": "income-13§ 38 Skatter og afgifter","name": "§ 38 Skatter og afgifter","data": {"income":658428.1,"$area":658428.1}}
 ,
 {"id": "expense-13§ 38 Skatter og afgifter","name": "§ 38 Skatter og afgifter","data": {"expense":15159.8,"$area":15159.8}}
-,
-{"id": "income-13I alt","name": "I alt","data": {"income":679823.3,"$area":679823.3}}
-,
-{"id": "expense-13I alt","name": "I alt","data": {"expense":660393.9,"$area":660393.9}}
 ,
 {"id": "income-13§ 40 Genudlån mv","name": "§ 40 Genudlån mv","data": {"income":0,"$area":0}}
 ,

@@ -28,7 +28,7 @@ parse src =
   let list = map (map trim) $ map (splitOn "|") $ splitOn "\n" text  in
   filter
     (\x -> length x > 0 &&
-           (startswith "\167" (x !! 0) || startswith "I alt" (x !! 0))) list
+           (startswith "\167" (x !! 0))) list
 
 formatNumber n = case n of
                       "" -> "0"
