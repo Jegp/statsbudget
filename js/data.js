@@ -1,4 +1,4 @@
-{"children": [
+{"name": 13, "children": [
 {"id": "income-13§  1 Dronningen","name": "§  1 Dronningen","data": {"income":0,"$area":0}}
 ,
 {"id": "expense-13§  1 Dronningen","name": "§  1 Dronningen","data": {"expense":77.2,"$area":77.2}}
