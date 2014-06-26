@@ -37,7 +37,7 @@ formatNumber n = case n of
 toItem :: [String] -> String -> String -> Int -> String
 toItem list year field item =
   let cost = formatNumber (list !! item) in
-  concat ["\n{\"id\": \"", year, (list !! 0), "\",",
+  concat ["\n{\"id\": \"", field, "-", year, (list !! 0), "\",",
           "\"name\": \"", (list !! 0), "\",",
           "\"data\": {\"", field, "\":", cost, ",",
           "\"$area\":", cost, "}}\n"]
