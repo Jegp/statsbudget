@@ -28,8 +28,8 @@ var Log = {
 
 function init(){
   //init data
-  var json =
-
+  var json = bonjovi;
+/*
 {
    "data": {},
    "id": "root",
@@ -133,7 +133,7 @@ function init(){
           "name": "Mother Love Bone"
         }
       ]
-};
+};*/
   //end
     $jit.TM.Squarified.implement({
         'onLeftClick': function(elem) {
