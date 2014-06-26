@@ -1,3 +1,4 @@
+import Data.Char
 import Data.List
 import Data.List.Split
 import Data.String.Utils
@@ -34,19 +35,34 @@ formatNumber n = case n of
                       "" -> "0"
                       x  -> replace "," "." x
 
-toItem :: [String] -> String -> String -> Int -> String
-toItem list year field item =
-  let cost = formatNumber (list !! item) in
-  concat ["\n{\"id\": \"", field, "-", year, (list !! 0), "\",",
-          "\"name\": \"", (list !! 0), "\",",
-          "\"data\": {\"", field, "\":", cost, ",",
-          "\"$area\":", cost, "}}\n"]
+sumStr str1 str2 = show $ (read str1 :: Double) + (read str2 :: Double)
+
+toItem :: [String] -> String -> String
+toItem list year =
+  let name     = year ++ "-" ++ (list !! 0) in
+  let income   = formatNumber (list !! 4) in
+  let expenses = formatNumber (list !! 5) in
+  let total    = sumStr income expenses in
+  concat ["\n{\"id\": \"", name, "\",",
+             "\"name\": \"", (list !! 0), "\",",
+             "\"data\": {\"total\":", total, ",",
+                        "\"$area\":", total, "},",
+             "\"children\": [",
+                             "{\"id\":", "\"in-", name, "\",",
+                             "\"data\": {",
+                                         "\"expenses\":", expenses,
+                                         "\"$area\":", expenses, "}},",
+                             "{\"id\":", "\"out-", name, "\",",
+                             "\"data\": {",
+                                         "\"income\":", income,
+                                         "\"$area\":", income, "}}",
+             "]",
+          "}\n"]
 
 toJSON :: String -> [[String]] -> String
 toJSON year list =
   "var bonjovi = {\"name\": " ++ year ++ ", \"children\": [" ++
-  intercalate "," (map (\x ->
-         toItem x year "income" 5 ++ "," ++ toItem x year "expense" 4) list)
+  intercalate "," (map (\x -> toItem x year) list)
   ++ "]}"
 
 outputJSON year =
