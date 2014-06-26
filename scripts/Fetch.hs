@@ -50,11 +50,11 @@ toItem list year =
              "\"children\": [",
                              "{\"id\":", "\"in-", name, "\",",
                              "\"data\": {",
-                                         "\"expenses\":", expenses,
+                                         "\"expenses\":", expenses,",",
                                          "\"$area\":", expenses, "}},",
                              "{\"id\":", "\"out-", name, "\",",
                              "\"data\": {",
-                                         "\"income\":", income,
+                                         "\"income\":", income,",",
                                          "\"$area\":", income, "}}",
              "]",
           "}\n"]
