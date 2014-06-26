@@ -44,7 +44,7 @@ toItem list year field item =
 
 toJSON :: String -> [[String]] -> String
 toJSON year list =
-  "{\"name\": " ++ year ++ ", \"children\": [" ++
+  "var bonjovi = {\"name\": " ++ year ++ ", \"children\": [" ++
   intercalate "," (map (\x ->
          toItem x year "income" 5 ++ "," ++ toItem x year "expense" 4) list)
   ++ "]}"
