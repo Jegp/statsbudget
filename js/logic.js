@@ -28,8 +28,9 @@ var Log = {
 
 function init(){
   //init data
-  var json =bonjovi;
-/*{
+  var json =
+
+{
    "data": {},
    "id": "root",
    "name": "Staten Danmark",
@@ -132,22 +133,40 @@ function init(){
           "name": "Mother Love Bone"
         }
       ]
-};*/
+};
   //end
+    $jit.TM.Squarified.implement({
+        'onLeftClick': function(elem) {
+            //if is leaf
+            var node = TreeUtil.getSubtree(this.tree, elem.parentNode.id);
+            if(node.children && node.children.length == 0) {
+                var oldparent = node, newparent = node;
+                while(newparent.id != this.shownTree.id) {
+                    oldparent = newparent;
+                    newparent = TreeUtil.getParent(this.tree, newparent.id);
+                }
+                this.view(oldparent.id);
+            } else {
+              this.enter(elem);
+            }
+        }
+    });
   //init TreeMap
   var tm = new $jit.TM.Squarified({
+
     //where to inject the visualization
     injectInto: 'infovis',
         //show only one tree level
-    levelsToShow: 2,
+    levelsToShow: 1,
     //parent box title heights
     titleHeight: 35,
     //enable animations
     animate: animate,
       //add cushion gradients
-  cushion: useGradients,
+  //cushion: useGradients,
     //box offsets
-    offset: 5,
+    offset: 1,
+
     //Attach left and right click events
     Events: {
       enable: true,
@@ -197,6 +216,7 @@ function init(){
         };
     }
   });
+
   tm.loadJSON(json);
   tm.refresh();
   //end
